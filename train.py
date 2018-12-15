@@ -24,7 +24,7 @@ def train_model(learning_mode,
     Main training function. Call this function to train a model.
 
     :params:
-        learning_mode - String, What type of learning approach you want to take: Speech to text or classification
+        learning_mode - String, type of learning approach you want to take: Speech to text or classification
         model_name - String, Name of the model, used to save models weights
         save_path - String, Name of the folder where models data will be saved
         pickle_name - String, Name of the pickle file used for saving models loss histroy data
@@ -36,7 +36,7 @@ def train_model(learning_mode,
         generate_noisy_data - Boolean, if True generator will generate noisy data as additional training data
                                        NOTE: This will increase your batch size, if you have 4GB or less RAM don't use this parameter or set batch_size to 32 or less
         number_of_noisy_samples - Integer, number of noisy samples generater PER sample in a batch
-        audio_padding -  Boolean, if set to True each sample will be padded with zeros to match 1sec length
+        audio_padding -  Boolean, if set to True each sample will be padded with zeros to match sample_rate
         mfcc_dim - Integer, number of MFCC features
         mfcc_features - Integer list, what MFCC features to use Example: [0] will only be using regular MFCC features, [0, 1] -> regular + delta features
     '''
