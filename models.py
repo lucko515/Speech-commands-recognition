@@ -103,7 +103,7 @@ def classification_model(input_dim,
     """
 
     #Defines Input layer for the model
-    input_data = Input(name='inputs', shape=(None, input_dim))
+    input_data = Input(name='inputs', shape=input_dim)
 
     #Defines 1D Conv block (Conv layer +  batch norm)
     conv_1d = Conv1D(filters, 
@@ -125,8 +125,10 @@ def classification_model(input_dim,
                 return_sequences=True, implementation=2, name='final_layer_of_rnn')(layer)
     layer = BatchNormalization(name='bt_rnn_final')(layer)
     
-    #Apply Dense layer to each time step of the RNN with TimeDistributed function
-    time_dense = TimeDistributed(Dense(output_dim))(layer)
+    layer = Flatten()(layer)
+
+    #squish RNN features to match number of classes
+    time_dense = Dense(output_dim)(layer)
 
     #Define model predictions with softmax activation
     y_pred = Activation('softmax', name='softmax')(time_dense)

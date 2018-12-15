@@ -1,5 +1,5 @@
-from utils.audio_utils import compute_mfcc_features, mfcc_pack, generate_spectogram
-from utils.utils import word_to_int, char_mapper
+from utils.audio_utils import compute_mfcc_features, mfcc_pack, generate_spectrogram
+from utils.utils import word_to_int, character_mapper
 from scipy.fftpack import fft
 from scipy.io import wavfile
 from scipy import signal
@@ -73,9 +73,8 @@ class AudioGenerator():
             print("WORNING: You are in the noise generating mode. \
                    Your batch size is increased to: {}".format(self.batch_size + self.batch_size * self.number_of_noisy_samples))
         
-
         self._get_classes_()
-        self.id_to_char, self.char_to_id = char_mapper()
+        self.id_to_char, self.char_to_id = character_mapper ()
 
         if mode=='train':
             #Setup everything for the training process
@@ -377,7 +376,7 @@ class AudioGenerator():
                 audio = np.append(audio, np.zeros(self.sample_rate - audio.shape[0]))
             
         if self.spectrogram:
-            return generate_spectogram(audio, 
+            return generate_spectrogram(audio, 
                                        sample_rate=self.sample_rate, 
                                        step_size=self.step, 
                                        window_size=self.window_size)[-1]

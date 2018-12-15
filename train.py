@@ -62,9 +62,9 @@ def train_model(learning_mode,
     #pretty much hard coded version of features decision
     #TODO: Make this better, because for now it won't handle delta and delta-delta MFCC features
     if spectrogram:
-    	features = 161
+        features = 161
     else:
-    	features = 13
+        features = 13
 
     if learning_mode == 'speech_to_text':
         model = speech_to_text_model(input_dim=features, 
@@ -116,23 +116,23 @@ def train_model(learning_mode,
 
 if __name__ == '__main__':
 
-	print("Training classification model with spectrogram features.")
-	train_model(optimizer=RMSprop(),
-			learning_mode='classification',
+    print("Training classification model with spectrogram features.")
+    train_model(optimizer=RMSprop(),
+            learning_mode='classification',
             save_path="saves/",
             model_name="model_clf_only_commands_spectrogram.h5",
-            pickle_path='model_clf_only_commands_spectrogram.pickle',
+            pickle_name='model_clf_only_commands_spectrogram.pickle',
             batch_size=128,
             spectrogram=True,
             number_of_noisy_samples=2, 
             epochs=3)
 
     '''
-	print("Training speech_to_text model with spectrogram features.")
-	train_model(optimizer=RMSprop(),
-		    learning_mode='speech_to_text',
+    print("Training speech_to_text model with spectrogram features.")
+    train_model(optimizer=RMSprop(),
+            learning_mode='speech_to_text',
             save_path="model_speech_hybrid.h5",
-            pickle_path='model_speech_hybrid.pickle',
+            pickle_name='model_speech_hybrid.pickle',
             batch_size=128,
             spectrogram=True,
             number_of_noisy_samples=2, 
